@@ -1,29 +1,87 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    redirect: "/login",
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
+    path: "/about",
+    name: "about",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/login.vue"),
+  },
+  {
+    path: "/index",
+    name: "index",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/index.vue"),
+    children: [
+      {
+        path: "/users",
+        name: "users",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/users.vue"),
+      },
+      {
+        path: "/roles",
+        name: "roles",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/roles.vue"),
+      },
+      {
+        path: "/rights",
+        name: "rights",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/rights.vue"),
+      },
+      {
+        path: "/goods",
+        name: "goods",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/goods.vue"),
+      },
+      {
+        path: "/params",
+        name: "params",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/params.vue"),
+      },
+      {
+        path: "/categories",
+        name: "categories",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/categories.vue"),
+      },
+      {
+        path: "/orders",
+        name: "orders",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/orders.vue"),
+      },
+      {
+        path: "/reports",
+        name: "reports",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/reports.vue"),
+      },
+    ],
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
